@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="standard_12">12sp</dimen>
+    <dimen name="size110">110dp</dimen>
+    <dimen name="standard_145">145sp</dimen>
+</resources>
