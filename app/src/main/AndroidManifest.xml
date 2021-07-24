@@ -12,12 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".PhotosDetailActivity.PhotosDetail"
             android:label="@string/app_photoDetail"
-            android:parentActivityName=".FilckerActivity.Flicker"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".FilckerActivity.Flicker">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -27,8 +26,7 @@
         <activity
             android:name=".SearchActivity.Search"
             android:label="@string/app_search"
-            android:parentActivityName=".FilckerActivity.Flicker"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".FilckerActivity.Flicker">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -37,8 +35,7 @@
         </activity>
         <activity
             android:name=".FilckerActivity.Flicker"
-            android:label="@string/app_flick"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_flick">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
