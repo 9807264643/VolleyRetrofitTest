@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">FlickerBrowserApp</string>
     <string name="app_flick">Flicker</string>
+    <string name="app_photoDetail">Photo Detail</string>
+    <string name="app_search">Search</string>
     <string name="giggle_flip_book">Giggle flip Book</string>
     <string name="action_settings">Settings</string>
     <string name="action_volley">VolleyDemo</string>

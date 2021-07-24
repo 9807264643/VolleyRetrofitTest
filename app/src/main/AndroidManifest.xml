@@ -13,7 +13,30 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FilckerActivity.Flicker"
+        <activity
+            android:name=".PhotosDetailActivity.PhotosDetail"
+            android:label="@string/app_photoDetail"
+            android:parentActivityName=".FilckerActivity.Flicker"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.flickerbrowserapp.FilckerActivity.Flicker"/>
+
+        </activity>
+        <activity
+            android:name=".SearchActivity.Search"
+            android:label="@string/app_search"
+            android:parentActivityName=".FilckerActivity.Flicker"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.flickerbrowserapp.FilckerActivity.Flicker"/>
+
+        </activity>
+        <activity
+            android:name=".FilckerActivity.Flicker"
             android:label="@string/app_flick"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -24,11 +47,7 @@
         </activity>
         <activity android:name=".VolleySliderActivity.VolleyActivityDemo" />
         <activity android:name=".MainActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
     </application>
 
