@@ -26,7 +26,9 @@ class PhotosDetail : BaseActivity() {
 
         val photo = intent.getSerializableExtra(PHOTO_TRANSFER) as Photos
 
-            photo_title.text = photo.title
+//            photo_title.text = photo.title
+            photo_title.text = resources.getString(R.string.photo_tilte_text, photo_title)
+
             photo_author.text = photo.author
             photo_tags.text = photo.tags
 

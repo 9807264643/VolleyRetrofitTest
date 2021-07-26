@@ -3,21 +3,23 @@ package com.example.flickerbrowserapp.FilckerActivity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flickerbrowserapp.BaseActivity
+import com.example.flickerbrowserapp.FLICKR_QUERY
 import com.example.flickerbrowserapp.FilckerActivity.Adapter.FlickerRecylerViewAdapter
 import com.example.flickerbrowserapp.FilckerActivity.DownloadJsonByAsyc.GetFlikrJsonData
 import com.example.flickerbrowserapp.FilckerActivity.Model.Photos
 import com.example.flickerbrowserapp.PHOTO_TRANSFER
 import com.example.flickerbrowserapp.PhotosDetailActivity.PhotosDetail
 import com.example.flickerbrowserapp.R
+import com.example.flickerbrowserapp.SearchActivity.Search
 import java.lang.Exception
 
 @Suppress("DEPRECATION")
@@ -41,16 +43,11 @@ class Flicker : BaseActivity(), GetRawData.OnDownloadCompleteListner,
         recycler_flick.addOnItemTouchListener(RecyclerOnItemClicklistner(this, recycler_flick, this))
         recycler_flick.adapter = flickerRecylerViewAdapter
 
-        val url = createUri(
-            "https://api.flickr.com/services/feeds/photos_public.gne",
-            "android,oreo",
-            "en-us",
-            true
-        )
-        val getRawData = GetRawData(this)
+//        val url = createUri("https://api.flickr.com/services/feeds/photos_public.gne", "android,oreo", "en-us", true)
+//        val getRawData = GetRawData(this)
 //        getRawData.setDownloadCompleteListner(this)
 //        getRawData.execute("https://api.flickr.com/services/feeds/photos_public.gne?tags=android,oreo&format=json&nojsoncallback=1")
-        getRawData.execute(url)
+//        getRawData.execute(url)
 
 
     }
@@ -85,7 +82,11 @@ class Flicker : BaseActivity(), GetRawData.OnDownloadCompleteListner,
         // as you specify a parent activity in AndroidManifest.xml.
         Log.d(TAG, "onOptionsItemSelected called")
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_search -> {
+                startActivity(Intent(this@Flicker, Search::class.java))
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -129,5 +130,27 @@ class Flicker : BaseActivity(), GetRawData.OnDownloadCompleteListner,
             startActivity(intent)
         }
     }
+
+
+    override fun onResume() {
+        Log.d(TAG, ".onResume starts")
+        super.onResume()
+
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        val queryResult = sharedPref.getString(FLICKR_QUERY, "")
+
+        if (queryResult!!.isNotEmpty()) {
+            val url = createUri(
+                "https://api.flickr.com/services/feeds/photos_public.gne",
+                queryResult!!,
+                "en-us",
+                true
+            )
+            val getRawData = GetRawData(this)
+            getRawData.execute(url)
+        }
+        Log.d(TAG, ".onResume: ends")
+    }
+
 
 }
